@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import movies from "./movie-data.json";
 
 function App() {
+  const [newMovie, setNewMovie] = useState("");
+
+  function randomMovie() {
+    let movieNumber = movies.length;
+    let randomNumber = Math.floor(Math.random() * movieNumber);
+
+    setNewMovie(movies[randomNumber].title);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Netflix Movie Selector
+      <button onClick={randomMovie}>Generate Movie</button>
+      <p>Movie: {newMovie}</p>
     </div>
   );
 }
